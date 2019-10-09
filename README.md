@@ -1,1 +1,1 @@
-# cypress_javascript_days
+# cypress_workshop
