@@ -1,6 +1,6 @@
 'use strict';
 
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 const Helpers = require('../helpers');
 const User = require('../../models/user');
 
@@ -9,12 +9,12 @@ module.exports = Helpers.withDefaults({
     path: '/users/login',
     options: {
         validate: {
-            payload: {
+            payload: Joi.object({
                 user: Joi.object().required().keys({
                     email: User.field('email').required(),
                     password: Joi.string().required()
                 })
-            }
+            })
         },
         handler: async (request, h) => {
 

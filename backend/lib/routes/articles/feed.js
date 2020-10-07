@@ -1,6 +1,6 @@
 'use strict';
 
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 const Helpers = require('../helpers');
 
 module.exports = Helpers.withDefaults({
@@ -8,10 +8,10 @@ module.exports = Helpers.withDefaults({
     path: '/articles/feed',
     options: {
         validate: {
-            query: {
+            query: Joi.object({
                 limit: Joi.number().integer().min(1).default(20),
                 offset: Joi.number().integer().min(0).default(0)
-            }
+            })
         },
         auth: 'jwt',
         handler: async (request) => {
